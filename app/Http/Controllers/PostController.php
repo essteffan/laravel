@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -16,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view("posts.index", compact("posts"));
     }
 
     /**
@@ -26,16 +29,16 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("posts.create");
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //
     }
@@ -48,7 +51,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view("posts.show", compact("post"));
     }
 
     /**
