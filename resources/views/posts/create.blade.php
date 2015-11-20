@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">BODY</label>
-                    <textarea class="form-control" rows="3" name="body"/>{{ Input::old('body') }}</textarea>
+                    <textarea class="form-control" rows="3" name="body" >{{ Input::old('body') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="user_id">USER_ID</label>
