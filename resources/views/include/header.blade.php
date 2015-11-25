@@ -29,18 +29,18 @@
                     <a href="#">Advertise</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="{{ route("contact.index") }}">Contact</a>
                 </li>
             </ul>
             <ul class="nav navbar-right navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
                     <ul class="dropdown-menu" style="padding:12px;">
-                        <form class="form-inline">
+                        <form class="form-inline" action="{{ route("posts.index") }}" method="get">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
+                                <input type="text" class="form-control" name="search" value="{{ app('request')->input("search") }}" placeholder="Search for...">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
+                    <button class="btn btn-default" type="submit">Go!</button>
                   </span>
                             </div>
                         </form>

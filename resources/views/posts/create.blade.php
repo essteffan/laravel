@@ -2,36 +2,53 @@
 
 @section('content')
     <div class="page-header">
-        <h1>Posts / Create </h1>
+        <h1 class="text-center">Posts / Create </h1>
     </div>
 
 
-    <div class="row">
-        <div class="col-md-12">
+    <!-- Bootstrap Boilerplate... -->
 
-            <form action="{{ route('posts.store') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="panel-body">
+        <!-- Display Validation Errors -->
 
-                <div class="form-group">
-                    <label for="title">TITLE</label>
-                    <input type="text" name="title" class="form-control" value="{{ Input::old('title') }}"/>
+        <!-- New Post Form -->
+        <form action="{{ route('posts.store') }}" method="POST" class="form-horizontal">
+            {{ csrf_field() }}
+
+            <div class="form-group">
+                <label for="title" class="col-sm-3 control-label">TITLE</label>
+                <div class="col-sm-6">
+                    <input type="text" name="name" class="form-control" id="title" value="{{ Input::old('name') }}"/>
                 </div>
-                <div class="form-group">
-                    <label for="body">BODY</label>
-                    <textarea class="form-control" rows="3" name="body" >{{ Input::old('body') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="body" class="col-sm-3 control-label">BODY</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" rows="3" name="content" >{{ Input::old('content') }}</textarea>
                 </div>
-                <div class="form-group">
-                    <label for="user_id">USER_ID</label>
-                    <input type="text" name="user_id" class="form-control" value=""/>
+            </div>
+            <div class="form-group">
+                <label for="tags" class="col-sm-3 control-label">Tags</label>
+                <div class="col-sm-6">
+                    <select name="tags[]" class="form-control" id="tags" multiple="multiple">
+                        @foreach($tags as $key => $tag)
+                            <option value="{{ $key }}"> {{ $tag }}</option>
+                        @endforeach
+                    </select>
                 </div>
+            </div>
 
 
-
-                <a class="btn btn-default" href="{{ route('posts.index') }}">Back</a>
-                <button class="btn btn-primary" type="submit" >Create</button>
-            </form>
-        </div>
+            <!-- Add Post Button -->
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 
-    @include("errors.errors")
 @endsection

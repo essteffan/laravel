@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'email@email.com', 'name' => 'Laravel Local Stefan Lenovo'],
 
     /*
     |--------------------------------------------------------------------------

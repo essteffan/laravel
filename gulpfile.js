@@ -16,8 +16,9 @@ elixir(function(mix) {
 
     mix.sass('app.scss')
        .styles([
-        'bootstrap.min.css',
-        'style.css'
+       'font-awesome.min.css',
+       'bootstrap.min.css',
+        'styles.css'
     ], 'public/assets/css')
         .scripts([
             'jquery.min.js',

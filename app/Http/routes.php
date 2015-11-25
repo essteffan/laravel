@@ -15,7 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::resource("posts", "PostController");
+Route::resource("tags", "TagsController");
+Route::resource("page", "PagesController");
+Route::get("contact", array(
+    'as' => 'contact.index',
+    'uses' => 'PagesController@contact'
+));
+Route::post("contact", array('as' => 'contact.save', 'uses' => "PagesController@create"));
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
