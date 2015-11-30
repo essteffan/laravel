@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tags = ['personal', 'business', 'cookie'];
+        $tags = Tag::all();
         return view('tags.index', compact('tags'));
     }
 

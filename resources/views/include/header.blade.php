@@ -22,11 +22,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tags
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add New Tag</a></li>
+                        <li><a href="{{ route("tags.create") }}">Add New Tag</a></li>
+                        <li><a href="{{ route("tags.index") }}">View All</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#">Advertise</a>
                 </li>
                 <li>
                     <a href="{{ route("contact.index") }}">Contact</a>

@@ -91,21 +91,18 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PostRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
         $post->name = $request->get("name");
         $post->content = $request->get("content");
         $post->save();
 
-        $post->tags()->attach($request->input('tags'));
-//        Auth::user()->posts()->update($post);
+        $this->sync($post, $request->input("tags"));
 
         return redirect()->route("posts.index")->with("message", "The post was updated");
     }
@@ -114,11 +111,22 @@ class PostController extends Controller
     /**
      * @param Request $request
      * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, $id)
     {
         Post::findOrFail($id)->delete();
 
         return redirect()->route("posts.index")->with("message", "The post has been deleted");
+    }
+
+
+    /**
+     * @param Post $post
+     * @param $tags
+     */
+    private function sync(Post $post, array $tags)
+    {
+        $post->tags()->sync($tags);
     }
 }
